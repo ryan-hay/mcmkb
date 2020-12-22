@@ -2,8 +2,15 @@
 slug: sample-one
 title: Sample One Blog Post
 author: Ryan Hay
-description: Description for Sample One Blog Post
-date: 15 December 2020
+description:
+  Description for Sample One Blog Post. Lorem ipsum dolor sit amet, consectetur adipiscing
+  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin
+  nibh sit amet commodo. Dictum varius duis at consectetur. Et odio pellentesque diam
+  volutpat commodo sed egestas egestas. Mauris pharetra et ultrices neque. Amet
+  consectetur adipiscing elit pellentesque.
+date: 2020-11-01
+categories: developer
+heroImageName: mcm.png
 ---
 
 ## Headings
@@ -22,8 +29,7 @@ Normal text
 
 <br />
 
-*Emphasis*
-
+_Emphasis_
 
 <br />
 
@@ -51,23 +57,20 @@ www.example.com
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d03xg2PKOPg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
 ## Code
 
-``` jsx
-import React from "react";
+```jsx
+import React from 'react'
 
 const CoolComponent = () => {
   console.log('test')
-  return (
-    <div>I'm a cool component!!</div>
-  )
+  return <div>I'm a cool component!!</div>
 }
 
-export default CoolComponent;
+export default CoolComponent
 ```
 
-``` yaml
+```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -84,22 +87,21 @@ data:
 
 ## Table
 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| First Header | Second Header |
+| ------------ | ------------- |
+| Content Cell | Content Cell  |
+| Content Cell | Content Cell  |
 
 ## Lists
 
-### Ordered
-
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
-
 ### Unordered
+
+- Item 1
+- Item 2
+  - Item 2a
+  - Item 2b
+
+### Ordered
 
 1. Item 1
 1. Item 2
@@ -109,13 +111,12 @@ data:
 
 ### Tasklist
 
-* [ ] to do
-* [x] done
+- [ ] to do
+- [x] done
 
 ## Blockquotes
 
-> This is the start
-> This is the next start
+> This is the start This is the next start
 
 ## Emoji
 

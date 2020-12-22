@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React from 'react'
-import {Footer} from './Footer'
 import {Navbar} from './Navbar'
 
 interface LayoutProps {
@@ -8,7 +7,7 @@ interface LayoutProps {
   description?: string
 }
 
-export const Layout: React.FC<LayoutProps> = ({children, title, description = ''}) => {
+const BlogLayout: React.FC<LayoutProps> = ({children, title, description = ''}) => {
   return (
     <>
       <Head>
@@ -18,8 +17,9 @@ export const Layout: React.FC<LayoutProps> = ({children, title, description = ''
         <title>{title}</title>
       </Head>
       <Navbar />
-      <div>{children}</div>
-      <Footer />
+      <div className="blog">{children}</div>
     </>
   )
 }
+
+export default BlogLayout

@@ -1,33 +1,52 @@
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import matter from 'gray-matter'
+import Img from 'react-optimized-image'
 import React from 'react'
+import {BlogsByCategories} from '../components/BlogsByCategories'
+import {FeaturedBlogs} from '../components/FeaturedBlogs'
+import {getAllBlogsFrontmatter, getRawBlogsContent} from '../utils/blogs'
+import {Layout} from '../components/Layout'
 
 interface IndexProps {
-  data: string[] // array of md blogs in string format
-  title: string
-  description?: string
+  rawBlogsContent: string[] // array of raw string md blogs
+  siteTitle: string
+  siteDescription: string
 }
 
-const Index: React.FC<IndexProps> = ({title, data}) => {
-  const blogData = data.map(blog => matter(blog))
-  const blogFrontMatter = blogData.map(listItem => listItem.data)
+const Index: React.FC<IndexProps> = ({siteTitle, siteDescription, rawBlogsContent}) => {
+  const {
+    allBlogs,
+    featuredBlogs,
+    announcementBlogs,
+    customerStoriesBlogs,
+    developerBlogs,
+    eventsBlogs,
+    productBlogs,
+    thoughtleadershipBlogs,
+  } = getAllBlogsFrontmatter(rawBlogsContent)
 
   return (
-    <Layout title={title}>
-      <h1 className="mb-12">Articles</h1>
-      <div>
-        <ul>
-          {blogFrontMatter.map((blog, i) => (
-            <li key={i} className="mb-12">
-              <Link href={`/${blog.slug}`}>
-                <a className="text-lg">{blog.title}</a>
-              </Link>
-              <p>{blog.description}</p>
-            </li>
-          ))}
-        </ul>
+    <Layout title={siteTitle} description={siteDescription}>
+      <div className="bg-gray-100">
+        <div className="container mx-auto">
+          <div className="mx-2 pt-16">
+            <h1 className="mb-4 font-extrabold text-gray-800">Blog</h1>
+            <Img
+              className="mb-16"
+              src={require(`../../public/defaultImages/separator.png`)}
+            />
+            <FeaturedBlogs blogFrontmatter={featuredBlogs} />
+          </div>
+        </div>
       </div>
+      <BlogsByCategories
+        allBlogs={allBlogs}
+        featuredBlogs={featuredBlogs}
+        announcementBlogs={announcementBlogs}
+        customerStoriesBlogs={customerStoriesBlogs}
+        developerBlogs={developerBlogs}
+        eventsBlogs={eventsBlogs}
+        productBlogs={productBlogs}
+        thoughtleadershipBlogs={thoughtleadershipBlogs}
+      />
     </Layout>
   )
 }
@@ -35,30 +54,17 @@ const Index: React.FC<IndexProps> = ({title, data}) => {
 export default Index
 
 export async function getStaticProps() {
+  // Get site data to populate next/head
   const siteData = await import(`../../siteconfig.json`)
-  const fs = require('fs')
 
-  // Get array of filenames in content dir
-  const files: string[] = fs.readdirSync(`${process.cwd()}/src/content`, 'utf-8')
-
-  // Filter filenames for only markdown files
-  const blogs = files.filter(filename => filename)
-
-  const data = blogs.map(blog => {
-    const path = `${process.cwd()}/src/content/${blog}/${blog}.md`
-    // get the content of the blog post
-    const rawContent: string = fs.readFileSync(path, {
-      encoding: 'utf-8',
-    })
-
-    return rawContent
-  })
+  // Get all blogs in raw format from filesystem
+  const rawBlogsContent = getRawBlogsContent(require('fs'))
 
   return {
     props: {
-      data: data,
-      title: siteData.default.title,
-      description: siteData.default.description,
+      rawBlogsContent,
+      siteTitle: siteData.default.title,
+      siteDescription: siteData.default.description,
     },
   }
 }

@@ -2,11 +2,16 @@
 slug: sample-two
 title: Sample Two Blog Post
 author: Ryan Hay
-description: Description for Sample Two Blog Post
-date: 15 December 2020
+description:
+  Description for Sample Two Blog Post. Description for Sample Two Blog Post. Description
+  for Sample Two Blog Post. Description for Sample Two Blog Post. Description for Sample
+  Two Blog Post. Description for Sample Two Blog Post. Description for Sample Two Blog
+  Post. Description for Sample Two Blog Post.
+date: 2020-12-16
+categories: thoughtLeadership,customer Stories, featured
+tags: kubernetes, openshift
+heroImageName: mcm2-hero.jpg
 ---
-
-# Sample Two Blog Post
 
 ![This is the Alt text](https://ibm-cloud-architecture.github.io/kubernetes-multicloud-management/images/mcm-monitoring-event-management/mcm-overall.png)
 
@@ -47,7 +52,7 @@ elementum facilisis. Nibh praesent tristique magna sit amet purus gravida quis b
 Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Vehicula ipsum a arcu
 cursus vitae congue mauris rhoncus aenean.
 
-![MCM Overall Solution Capability]('./assets/mcm.png')
+![MCM Overall Solution Capability]('./assets/mcm-dashboard.png')
 
 ### Venenatis urna cursus eget
 
